@@ -1,0 +1,610 @@
+/* ===== NAVBAR WRAPPER (Floating Mechanism) ===== */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  z-index: 1000;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none; /* Let clicks pass through empty areas */
+}
+
+.navbar-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  background: transparent;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto; /* Re-enable clicks for navbar */
+}
+
+/* ── SCROLLED STATE (The Floating Glass Pill) ── */
+.navbar-wrapper.scrolled {
+  padding: 1rem 2rem;
+}
+
+.navbar-wrapper.scrolled .navbar-inner {
+  background: rgba(10, 6, 20, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.5rem;
+}
+
+/* ===== LOGO ===== */
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.logo-initial {
+  color: var(--primary-light);
+}
+
+/* ===== DESKTOP 3D NAVIGATION LINKS ===== */
+.desktop-only {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  perspective: 1000px; /* Required for 3D */
+}
+
+/* 3D Flip Text Effect */
+.nav-item-3d a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  overflow: hidden;
+  padding: 4px 0;
+}
+
+.nav-item-3d a span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-item-3d a::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--primary-light);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-item-3d a:hover span {
+  transform: translateY(-100%);
+}
+
+.nav-item-3d a:hover::before {
+  transform: translateY(-100%);
+}
+
+/* ===== 3D BUTTON (CV DOWNLOAD) ===== */
+.btn-3d {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.btn-3d-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 0 #5b3bd4, /* 3D Depth */
+              0 8px 20px rgba(108, 71, 255, 0.3);
+}
+
+.btn-3d:hover .btn-3d-content {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #5b3bd4, 
+              0 12px 25px rgba(108, 71, 255, 0.4);
+}
+
+.btn-3d:active .btn-3d-content {
+  transform: translateY(4px); /* Pushes the button down */
+  box-shadow: 0 0 0 #5b3bd4, 
+              0 4px 10px rgba(108, 71, 255, 0.2);
+}
+
+/* ===== MOBILE MENU TOGGLE ===== */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1001; /* Above the overlay */
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+}
+
+.menu-toggle:hover {
+  color: var(--primary-light);
+}
+
+.menu-toggle.open {
+  transform: rotate(90deg);
+}
+
+/* ===== FULL SCREEN 3D MOBILE MENU ===== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 15, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-nav {
+  width: 100%;
+  padding: 2rem;
+  perspective: 1000px;
+}
+
+.mobile-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* 3D Staggered Reveal for Mobile Links */
+.mobile-links li {
+  opacity: 0;
+  transform: rotateX(-45deg) translateY(30px);
+  transform-origin: top;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mobile-menu-overlay.active .mobile-links li {
+  opacity: 1;
+  transform: rotateX(0) translateY(0);
+}
+
+.mobile-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.mobile-links a:hover,
+.mobile-links a:active {
+  color: var(--primary-light);
+}
+
+.mobile-cv-item {
+  margin-top: 1rem;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+@media (max-width: 900px) {
+  .nav-links { gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+  .menu-toggle { display: block; }
+  .navbar-wrapper { padding: 1rem; }
+  .navbar-wrapper.scrolled { padding: 0.5rem 1rem; }
+}
+
+/* ===== DROPDOWN WRAPPER ===== */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chevron {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+  color: var(--primary-light);
+}
+
+/* ===== DROPDOWN MENU ===== */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background: rgba(10, 6, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-width: 220px;
+  padding: 1rem 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px);
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.8rem 1.5rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem !important;
+  white-space: nowrap;
+  transition: all 0.2s ease !important;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(108, 71, 255, 0.1);
+  color: var(--primary-light) !important;
+  padding-left: 1.8rem !important; /* Slide-in effect on hover */
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .dropdown-wrapper:hover .dropdown-menu {
+    max-height: 300px;
+    padding-top: 10px;
+  }
+}
+/* ===== NAVBAR WRAPPER (Floating Mechanism) ===== */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  z-index: 1000;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.navbar-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  background: transparent;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+/* Scrolled State: The Floating Glass Pill */
+.navbar-wrapper.scrolled {
+  padding: 1rem 2rem;
+}
+
+.navbar-wrapper.scrolled .navbar-inner {
+  background: rgba(10, 6, 20, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 1.5rem;
+}
+
+/* ===== LOGO ===== */
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.logo-initial {
+  color: var(--primary-light);
+}
+
+/* ===== DROPDOWN ANIMATION LOGIC ===== */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.chevron {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-wrapper:hover .chevron {
+  transform: rotate(180deg);
+  color: var(--primary-light);
+}
+
+/* The Dropdown Menu Box */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(10, 6, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  min-width: 220px;
+  padding: 1rem 0;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  list-style: none;
+}
+
+.dropdown-wrapper:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(108, 71, 255, 0.1);
+  color: var(--primary-light);
+  padding-left: 1.8rem; /* Smooth slide-in on hover */
+}
+
+/* ===== 3D BUTTON (CV) ===== */
+.btn-3d-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--primary) 0%, #8B5CF6 100%);
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 0 #5b3bd4, 0 8px 20px rgba(108, 71, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-3d-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #5b3bd4, 0 12px 25px rgba(108, 71, 255, 0.4);
+}
+
+/* ===== MOBILE MENU RESPONSIVE ===== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 15, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-links {
+  list-style: none;
+  text-align: center;
+}
+
+.mobile-links li a {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+  margin: 1.5rem 0;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .menu-toggle { display: block; }
+  .navbar-wrapper { padding: 1rem; }
+}
+/* ===== FLOATING NAVBAR WRAPPER ===== */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  border-radius: 50px; /* Pill Shape */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-wrapper.scrolled .navbar-inner {
+  background: rgba(10, 6, 20, 0.8);
+  border-color: var(--primary-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== DROPDOWN STYLING ===== */
+.dropdown-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: rgba(10, 6, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 1rem 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(108, 71, 255, 0.1);
+  color: var(--primary-light);
+  padding-left: 25px;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--bg-dark);
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.5s;
+  }
+  .nav-center.active .nav-links {
+    right: 0;
+  }
+}

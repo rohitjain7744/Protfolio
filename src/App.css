@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Young+Serif&display=swap');
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;   /* 🔥 side white space fix */
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* SECTION SCROLL FIX (EXCEPT HERO) */
+section:not(#home) {
+  scroll-margin-top: 80px;
+}
+
+/* OPTIONAL: REMOVE DEFAULT IMAGE GAP */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* FORCE ALL SECTIONS */
+section, header, nav, div {
+  max-width: 100%;
+  overflow-x: hidden;
+}

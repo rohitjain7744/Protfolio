@@ -1,0 +1,30 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

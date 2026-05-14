@@ -1,0 +1,92 @@
+.p-section {
+  padding: 120px 5%;
+  background: var(--h-ink);
+}
+
+.p-container { max-width: 1200px; margin: 0 auto; }
+
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin: 60px 0;
+}
+
+/* ── PROJECT CARD ── */
+.p-card {
+  position: relative;
+  transition: transform 0.5s var(--h-out);
+}
+
+.p-img-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--h-border);
+  background: #15151a;
+}
+
+.p-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--h-out);
+}
+
+.p-card:hover .p-img-wrap img {
+  transform: scale(1.08) rotate(1deg);
+}
+
+/* Hover Overlay */
+.p-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.4s ease;
+}
+
+.p-card:hover .p-overlay { opacity: 1; }
+
+.p-link-btn {
+  padding: 12px 24px;
+  background: #fff; color: #000;
+  border-radius: 100px; font-weight: 700;
+  text-decoration: none; transform: translateY(20px);
+  transition: 0.4s var(--h-bounce);
+}
+
+.p-card:hover .p-link-btn { transform: translateY(0); }
+
+/* ── INFO SECTION ── */
+.p-info { padding: 25px 5px; }
+
+.p-meta {
+  display: flex; justify-content: space-between;
+  font-family: var(--h-fm); font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--p-accent); margin-bottom: 12px;
+}
+
+.p-title {
+  font-family: var(--h-fd); font-size: 1.8rem;
+  color: var(--h-fog); margin-bottom: 15px;
+}
+
+.p-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.p-tag {
+  font-family: var(--h-fm); font-size: 0.6rem;
+  padding: 4px 10px; border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--h-border);
+  color: var(--h-muted);
+}
+
+.p-footer { text-align: center; margin-top: 40px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .p-grid { grid-template-columns: 1fr; }
+  .p-title { font-size: 1.5rem; }
+}

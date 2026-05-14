@@ -1,0 +1,84 @@
+.tech-section {
+  padding: 100px 5% 80px;
+  background: var(--h-ink);
+  color: var(--h-fog);
+}
+
+.section-header { text-align: center; margin-bottom: 60px; }
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Glassmorphism Card */
+.tech-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 35px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s var(--h-bounce);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--card-accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Subtle Glow Effect on Hover */
+.tech-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at top right, var(--card-accent), transparent 70%);
+  opacity: 0; transition: 0.4s; z-index: 0; pointer-events: none;
+}
+.tech-card:hover::after { opacity: 0.05; }
+
+.category-title {
+  font-family: var(--h-fd);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--h-fog);
+  position: relative; z-index: 1;
+}
+
+.skills-list { position: relative; z-index: 1; }
+
+.skill-item { margin-bottom: 20px; }
+
+.skill-info {
+  display: flex; justify-content: space-between;
+  margin-bottom: 8px; font-size: 0.85rem;
+}
+
+.skill-name { font-weight: 600; color: var(--h-fog); }
+.skill-level { color: var(--h-muted); font-family: var(--h-fm); font-size: 0.7rem; text-transform: uppercase; }
+
+.skill-bar-bg {
+  width: 100%; height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px; overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%; background: var(--card-accent);
+  border-radius: 10px;
+  transform-origin: left;
+  animation: barGrow 1.5s var(--h-out);
+}
+
+@keyframes barGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (max-width: 768px) {
+  .tech-grid { grid-template-columns: 1fr; }
+}
