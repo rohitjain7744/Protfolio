@@ -24,6 +24,7 @@ const clientProjects = [
     image: mahavir,
     accent: '#ff4f2e',
     num: '01',
+    liveLink: 'https://mahavirchemicalindia.com' // Replace with actual live demo link
   },
   {
     id: 'industrial-machinery',
@@ -46,6 +47,7 @@ const clientProjects = [
     image: cgi,
     accent: '#00c9a7',
     num: '03',
+    liveLink: 'https://cgitech.netlify.app' // Replace with actual live demo link
   },
   {
     id: 'Dhruv-investments',
@@ -57,6 +59,7 @@ const clientProjects = [
     image: dhruv,
     accent: '#ff6b47',
     num: '04',
+    liveLink: 'https://dhruvinvestments.in' // Replace with actual live demo link
   },
   {
     id:'Golden-Hotel',
@@ -584,6 +587,14 @@ export default function ClientPage() {
                     
                   </div>
                     <h3 ClassName="cp-name">Live and Deploy </h3>
+                  <a
+  href={project.liveLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="cp-view-btn"
+>
+  Live Client Project <FaArrowRight />
+</a>
                 </div>
                
               </div>

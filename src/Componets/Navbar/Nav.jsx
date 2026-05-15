@@ -370,7 +370,7 @@ export default function Nav() {
           {/* LOGO */}
           <Link to="/" className="nv-logo">
             <div className="nv-logo-mark">R</div>
-            <span className="nv-logo-text">Rohit<em>.</em></span>
+            <span className="nv-logo-text">Rohit Jain <em>.</em></span>
           </Link>
 
           {/* DESKTOP LINKS */}
@@ -420,7 +420,7 @@ export default function Nav() {
           {/* RIGHT */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <a href={CV} download className="nv-cv-btn">
-              CV <FaDownload />
+              Resume <FaDownload />
             </a>
             <button
               className="nv-hamburger"
@@ -436,8 +436,10 @@ export default function Nav() {
       </header>
 
       {/* MOBILE DRAWER */}
+      
       <nav className={`nv-drawer${open ? ' open' : ''}`} aria-hidden={!open}>
         <ul className="nv-drawer-links">
+          
           {navLinks.map((item) =>
             item.dropdown ? (
               <li key={item.label}>

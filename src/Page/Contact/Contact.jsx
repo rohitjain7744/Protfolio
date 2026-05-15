@@ -412,6 +412,43 @@ export default function Contact() {
   const [sent, setSent]   = useState(false);
   const formRef = useRef(null);
 
+
+  const [result, setResult] = useState("");
+  const [status, setStatus] = useState("idle"); // idle, sending, success, error
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setStatus("sending");
+    setResult("Sending....");
+
+    const formData = new FormData(event.target);
+    
+    // Web3Forms Access Key
+    formData.append("access_key", "3ad92f93-4515-48d8-8f11-24e9c554b51f"); 
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setResult("Message Sent Successfully! ✓");
+        event.target.reset();
+      } else {
+        console.log("Error", data);
+        setStatus("error");
+        setResult(data.message);
+      }
+    } catch (error) {
+      setStatus("error");
+      setResult("Something went wrong. Please try again.");
+    }
+  };
+
   const validate = () => {
     const e = {};
     if (!form.name.trim())    e.name    = "Name is required";
@@ -556,111 +593,151 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* RIGHT — form */}
-          <div className="c-form-wrap">
-            <div className="c-form">
-              {sent ? (
-                <div className="c-sent">
-                  <div className="c-sent-icon">✓</div>
-                  <div className="c-sent-title">Message sent!</div>
-                  <div className="c-sent-sub">
-                    Thanks for reaching out, I'll get back to you soon.
-                  </div>
-                  <button
-                    className="c-sent-back"
-                    onClick={() => { setSent(false); setForm({ name:"", email:"", subject:"", message:"" }); }}
-                  >
-                    Send another message
-                  </button>
-                </div>
+        {/* RIGHT — form */}
+<div className="c-form-wrap">
+  <div className="c-form">
+    {sent ? (
+      <div className="c-sent">
+        <div className="c-sent-icon">✓</div>
+        <div className="c-sent-title">Message sent!</div>
+        <div className="c-sent-sub">
+          Thanks for reaching out, I'll get back to you soon.
+        </div>
+        <button
+          className="c-sent-back"
+          onClick={() => { setSent(false); setForm({ name:"", email:"", subject:"", message:"" }); }}
+        >
+          Send another message
+        </button>
+      </div>
+    ) : (
+      <>
+        <p className="c-form-title">Send a <em>message</em></p>
+
+        {/* Form handling starts here */}
+        <form onSubmit={async (e) => {
+          e.preventDefault();
+          const errs = validate();
+          if (Object.keys(errs).length) { setErrors(errs); return; }
+          
+          setSending(true);
+
+          // Web3Forms logic
+          const formData = new FormData(e.target);
+          formData.append("access_key", "3ad92f93-4515-48d8-8f11-24e9c554b51f"); // 👈 Yahan apni Key paste karein
+
+          try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+              setSent(true);
+              setForm({ name: "", email: "", subject: "", message: "" });
+            } else {
+              setErrors({ form: "Something went wrong. Please try again." });
+            }
+          } catch (error) {
+            setErrors({ form: "Network error. Please check your connection." });
+          } finally {
+            setSending(false);
+          }
+        }} noValidate>
+          
+          {/* Honeypot for Spam Protection (Hidden from users) */}
+          <input type="checkbox" name="botcheck" style={{ display: "none" }} />
+
+          <div style={{ display:"flex", flexDirection:"column", gap:"1.1rem" }}>
+
+            <div className="c-field-row">
+              <div className="c-field">
+                <label className="c-label" htmlFor="cf-name">Full Name</label>
+                <input
+                  className="c-input"
+                  id="cf-name" name="name" type="text"
+                  placeholder="Rohit Jain"
+                  value={form.name} onChange={handleChange}
+                  autoComplete="name"
+                  required
+                />
+                {errors.name && <span className="c-error">{errors.name}</span>}
+              </div>
+              <div className="c-field">
+                <label className="c-label" htmlFor="cf-email">Email</label>
+                <input
+                  className="c-input"
+                  id="cf-email" name="email" type="email"
+                  placeholder="you@example.com"
+                  value={form.email} onChange={handleChange}
+                  autoComplete="email"
+                  required
+                />
+                {errors.email && <span className="c-error">{errors.email}</span>}
+              </div>
+            </div>
+
+            <div className="c-field">
+              <label className="c-label" htmlFor="cf-subject">Subject</label>
+              <select
+                className="c-select"
+                id="cf-subject" name="subject"
+                value={form.subject} onChange={handleChange}
+                required
+              >
+                <option value="" disabled>Select a subject…</option>
+                {SUBJECTS.map(s => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+              {errors.subject && <span className="c-error">{errors.subject}</span>}
+            </div>
+
+            <div className="c-field">
+              <label className="c-label" htmlFor="cf-message">Message</label>
+              <textarea
+                className="c-textarea"
+                id="cf-message" name="message"
+                placeholder="Tell me about your project or opportunity…"
+                value={form.message} onChange={handleChange}
+                rows={5}
+                required
+              />
+              {errors.message && <span className="c-error">{errors.message}</span>}
+            </div>
+
+            {/* General Form Error Message */}
+            {errors.form && <span className="c-error" style={{ textAlign: 'center' }}>{errors.form}</span>}
+
+            <button
+              type="submit"
+              className="c-submit"
+              disabled={sending}
+            >
+              {sending ? (
+                <>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{animation:"spin 1s linear infinite"}}>
+                    <path d="M21 12a9 9 0 11-6.219-8.56"/>
+                  </svg>
+                  Sending…
+                </>
               ) : (
                 <>
-                  <p className="c-form-title">Send a <em>message</em></p>
-
-                  <form ref={formRef} onSubmit={handleSubmit} noValidate>
-                    <div style={{ display:"flex", flexDirection:"column", gap:"1.1rem" }}>
-
-                      <div className="c-field-row">
-                        <div className="c-field">
-                          <label className="c-label" htmlFor="cf-name">Full Name</label>
-                          <input
-                            className="c-input"
-                            id="cf-name" name="name" type="text"
-                            placeholder="Rohit Jain"
-                            value={form.name} onChange={handleChange}
-                            autoComplete="name"
-                          />
-                          {errors.name && <span className="c-error">{errors.name}</span>}
-                        </div>
-                        <div className="c-field">
-                          <label className="c-label" htmlFor="cf-email">Email</label>
-                          <input
-                            className="c-input"
-                            id="cf-email" name="email" type="email"
-                            placeholder="you@example.com"
-                            value={form.email} onChange={handleChange}
-                            autoComplete="email"
-                          />
-                          {errors.email && <span className="c-error">{errors.email}</span>}
-                        </div>
-                      </div>
-
-                      <div className="c-field">
-                        <label className="c-label" htmlFor="cf-subject">Subject</label>
-                        <select
-                          className="c-select"
-                          id="cf-subject" name="subject"
-                          value={form.subject} onChange={handleChange}
-                        >
-                          <option value="" disabled>Select a subject…</option>
-                          {SUBJECTS.map(s => (
-                            <option key={s} value={s}>{s}</option>
-                          ))}
-                        </select>
-                        {errors.subject && <span className="c-error">{errors.subject}</span>}
-                      </div>
-
-                      <div className="c-field">
-                        <label className="c-label" htmlFor="cf-message">Message</label>
-                        <textarea
-                          className="c-textarea"
-                          id="cf-message" name="message"
-                          placeholder="Tell me about your project or opportunity…"
-                          value={form.message} onChange={handleChange}
-                          rows={5}
-                        />
-                        {errors.message && <span className="c-error">{errors.message}</span>}
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="c-submit"
-                        disabled={sending}
-                      >
-                        {sending ? (
-                          <>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{animation:"spin 1s linear infinite"}}>
-                              <path d="M21 12a9 9 0 11-6.219-8.56"/>
-                            </svg>
-                            Sending…
-                          </>
-                        ) : (
-                          <>
-                            Send Message
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
-                            </svg>
-                          </>
-                        )}
-                      </button>
-
-                    </div>
-                  </form>
+                  Send Message
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+                  </svg>
                 </>
               )}
-            </div>
-          </div>
+            </button>
 
+          </div>
+        </form>
+      </>
+    )}
+  </div>
+</div>
         </div>
       </div>
 

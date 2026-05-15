@@ -790,6 +790,31 @@ export default function About() {
               </div>
             </div>
 
+            {/* second internship */}
+             <div className="ab-titem ab-reveal" data-delay="80">
+              <div className="ab-tdot ab-tdot--pulse" />
+              <div className="ab-tcard">
+                <div className="ab-tcard-top">
+                  <div>
+                    <div className="ab-trole">Java development Intern</div>
+                    <div className="ab-tcompany">Codveda Technologies , Maharashtra</div>
+                  </div>
+                  <span className="ab-tperiod">Jan 2026</span>
+                </div>
+                <ul className="ab-tpoints">
+                 <li>
+  Built intermediate-level Java applications using Object-Oriented Programming concepts such as inheritance, polymorphism, abstraction, and encapsulation.
+</li>
+<li>
+  Developed CRUD operation-based projects with Java, JDBC, and MySQL, including user authentication and data management systems.
+</li>
+<li>
+  Implemented file handling functionalities for reading, writing, updating, and storing structured application data efficiently.
+</li></ul>
+                <span className="ab-cert">Java Development Internship — Certified</span>
+              </div>
+            </div>
+
             {/* Freelance */}
             <div className="ab-titem ab-reveal" data-delay="160">
               <div className="ab-tdot" />
@@ -802,7 +827,7 @@ export default function About() {
                   <span className="ab-tperiod">Ongoing</span>
                 </div>
                 <ul className="ab-tpoints">
-                  <li>Delivered mobile-responsive landing pages for multiple clients, including <strong style={{color:"rgba(255,160,140,0.9)"}}>mahavirchemicalindia.com</strong>.</li>
+                  <li>Delivered mobile-responsive landing pages for multiple clients, including <strong style={{color:"rgba(255,160,140,0.9)"}}>mahavirchemicalindia.com</strong><br /><strong style={{color:"rgba(255,160,140,0.9)"}}>dhruvinvestments.in</strong> <br /><strong style={{color:"rgba(255,160,140,0.9)"}}>cgitech.netlify.app</strong>  </li>
                   <li>Integrated Web3 inquiry forms and applied lazy loading techniques, improving page load performance.</li>
                   <li>Managed full client lifecycle — requirements gathering, delivery, and iteration.</li>
                 </ul>

@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight, FaBriefcase, FaCode } from 'react-icons/fa';
 
 // Project images — update paths as needed
-import NovaHireImg from '../../assets/Logo2.png';
+import NovaHireImg from '../../assets/project/nova1.png';
 import MachineryImg from '../../assets/Logo1.png';
 import Ecom1 from "../../assets/Project/ecom1.png";
 import gym from "../../assets/Project/gym4.png";
 import cgi from "../../assets/Project/cgi.png";
+import novahiredesign from "../../assets/gallery8.png";
 
 /* ─────────────────────────────────────────
    DATA
@@ -23,7 +24,37 @@ const clientProjects = [
     image: NovaHireImg, // Aapka NovaHire screenshot variable
     accent: '#6c47ff',  // Premium Purple for Enterprise feel
     num: '01',
+    liveLink: 'https://hire-nova.netlify.app/' // Replace with actual live demo link
   },
+{
+  id: 'novahirearchitecture',
+
+  name: 'NovaHire System Architecture',
+
+  category: 'Enterprise Architecture & Infrastructure',
+
+  description:
+    'Designed a scalable AI-powered recruitment platform architecture using React, Spring Boot, JWT Authentication, MySQL, cloud infrastructure, and modular backend services. The system includes layered architecture, secure REST APIs, deployment workflows, AI-powered resume screening, and enterprise-grade authentication for high scalability and maintainability.',
+
+  tags: [
+    'System Architecture',
+    'React JS',
+    'Spring Boot',
+    'JWT Authentication',
+    'MySQL',
+    'Cloud Deployment',
+    'Microservices',
+    'REST APIs',
+    'DevOps',
+    'AI Integration'
+  ],
+
+  image: novahiredesign,
+
+  accent: '#6c47ff',
+
+  num: '02',
+},
   {
     id:'ecommerce',
     name: 'E-Commerce Platform',
@@ -33,7 +64,7 @@ const clientProjects = [
     tags: ['React.js', 'Node.js', 'MongoDB', 'Stripe'],
     image: Ecom1, // Aapka NovaHire screenshot variable
     accent: '#6c47ff',  // Premium Purple for Enterprise feel
-    num: '02',
+    num: '03',
   },
   {
     id: 'cgi-tech-solutions',
@@ -44,7 +75,7 @@ const clientProjects = [
     tags: ['React.js', 'Spring Boot', 'AWS'],
     image: cgi,
     accent: '#00c9a7',
-    num: '03',
+    num: '04',
   },
   
   {
@@ -56,7 +87,7 @@ const clientProjects = [
   tags: ['React.js', 'Spring Boot', 'MySQL', 'Twilio API'],
   image: gym, // Aapka Health Sync screenshot variable
   accent: '#00c9a7', // Teal accent for health/medical feel
-  num: '04',
+  num: '05',
 },
   
 ];
@@ -440,6 +471,22 @@ const css = `
     .cp-cta-btns { justify-content: center; }
     .cp-wrap { padding: 4rem 1.5rem 4rem; }
   }
+    .live-btn{
+  display:inline;
+  margin-top:10px;
+  padding:8px 16px;
+  border-radius:8px;
+  background:rgba(236, 29, 29, 0.9);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+.live-btn:hover{
+  transform:translateY(-2px);
+  opacity:0.9;
+}
 
   @media (max-width: 480px) {
     .cp-h1 { font-size: 2.5rem; }
@@ -569,6 +616,15 @@ Developer-focused premium heading.
                       <span key={tag} className="cp-tag">{tag}</span>
                     ))}
                   </div>
+                  
+<a
+  href={project.liveLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="cp-view-btn"
+>
+  Live project
+</a>
                 </div>
               </div>
             </Reveal>

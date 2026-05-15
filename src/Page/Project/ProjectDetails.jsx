@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
  
 // project1
-
+import nova12 from "../../assets/gallery8.png";
 //project2
 
 import ecom1 from "../../assets/Project/ecom1.png";
@@ -25,7 +25,16 @@ import gym5 from "../../assets/Project/gym5.png";
 import gym6 from "../../assets/Project/gym6.png";
 
 //project4
-
+import nova1 from "../../assets/Project/nova1.png";
+import nova2  from "../../assets/Project/nova2.png";
+import nova3 from "../../assets/Project/nova3.png";
+import nova4 from "../../assets/Project/nova4.png";
+import nova5 from "../../assets/Project/nova5.png";
+import nova6 from "../../assets/Project/nova6.png";
+import nova7 from "../../assets/Project/nova7.png";
+import nova8 from "../../assets/Project/nova8.png";
+import nova9 from "../../assets/Project/nova9.png";
+import nova10 from "../../assets/Project/nova10.png";
 /* ─────────────────────────────────────────
    DATA
 ───────────────────────────────────────── */
@@ -43,9 +52,7 @@ const clientData = {
     solution: 'Developed RESTful APIs with Spring Boot and integrated JWT authentication with BCrypt password hashing. The frontend was built with React.js for managing job applications.',
     tech: ['React.js', 'Spring Boot', 'MySQL', 'JWT', 'BCrypt', 'Railway', 'Netlify'],
     results: ['Secure JWT Authentication', 'Full Cloud Deployment', 'Role-Based Access Control'],
-    photos: [
-      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070', 
-      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070',
+    photos: [ nova1, nova2, nova3, nova4, nova5, nova6, nova7, nova8, nova9, nova10
     ],
     feedback: 'NovaHire showcases my ability to build and deploy enterprise-level software from ideation to production.',
     client: 'Full-Stack Software Project',
@@ -127,6 +134,69 @@ const clientData = {
     client: 'CTO, CGI Tech Solutions',
     link: 'https://cgitech.com',
   },
+  'novahirearchitecture': {
+  name: 'NovaHire System Architecture',
+
+  heroTag: 'Enterprise Architecture & Infrastructure',
+
+  num: '05',
+
+  accent: '#6c47ff',
+
+  description:
+    'Architected a scalable AI-powered recruitment platform using React, Spring Boot, JWT Authentication, MySQL, and cloud-native infrastructure. Designed layered backend services, secure REST APIs, role-based authentication, deployment pipelines, and modular microservice-ready architecture focused on scalability, maintainability, and enterprise-grade performance.',
+
+  challenge:
+    'Building a scalable recruitment platform capable of handling secure authentication, AI-powered resume screening, real-time recruiter workflows, and modular backend services while maintaining high performance and maintainability.',
+
+  solution:
+    'Designed a layered enterprise architecture using React and Spring Boot with JWT-based authentication, REST APIs, MySQL database design, cloud deployment workflows, and microservice-ready modular services for scalability and secure enterprise operations.',
+
+  tech: [
+    'System Architecture',
+    'React JS',
+    'Spring Boot',
+    'JWT Authentication',
+    'MySQL',
+    'REST APIs',
+    'Cloud Deployment',
+    'Microservices',
+    'Authentication & Security',
+    'Database Design',
+    'CI/CD Pipelines',
+    'DevOps',
+    'AI Resume Screening',
+  ],
+
+  results: [
+    'Scalable layered architecture',
+    'Secure JWT authentication system',
+    'Microservice-ready backend structure',
+    'Cloud-native deployment workflow',
+    'AI-powered recruitment infrastructure',
+  ],
+
+  photos: [
+    nova12,
+    nova1,
+    nova2,
+    nova3,
+    nova4,
+    nova5,
+    nova6,
+    nova7,
+    nova8,
+    nova9,
+    nova10,
+  ],
+
+  feedback:
+    'This architecture project showcases my ability to design scalable, secure, and enterprise-grade software systems with modern cloud infrastructure, authentication workflows, deployment strategies, and modular backend architecture.',
+
+  client: 'Enterprise System Architecture Project',
+
+  link: 'https://hire-nova.netlify.app',
+},
 };
 
 /* ─────────────────────────────────────────
