@@ -142,23 +142,20 @@ function About() {
           </div>
 
           {/* CTA */}
-          <div className="about-cta reveal-up delay-6">
-            <a
-              href="about"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              <span>More Info</span>
-              <span aria-hidden="true">→</span>
+
+
+          <div className="h-btns">
+            <a href="/about" className="h-btn h-btn-primary">
+              More About
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M7.5 1.5L13 7l-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </a>
-            <a
-              href="mailto:jain74159@gmail.com"
-              className="btn-outline"
-            >
-              <span>Get In Touch</span>
+            <a href="/contact" className="h-btn h-btn-ghost">
+              Contact Me
             </a>
           </div>
+         
 
         </div>
       </div>

@@ -1,37 +1,109 @@
+/* ==========================================================================
+   ROHIT JAIN PORTFOLIO - HERO-MATCHED FOOTER COLOR FORMAT
+   ========================================================================== */
+ @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cabinet+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 .footer {
-  background: #020617;
-  border-top: 1px solid #1e293b;
-  padding: 80px 20px 30px;
-  overflow-x: hidden;
+  background: #0a0712; /* Deep premium dark to match the dark grid vibe */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 80px 0 30px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Linear subtle shimmer using your specific Hero colors */
+.footer-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    #00c9a7, /* Teal/Green shape color */
+    #ff4f2e, /* Vibrant Orange button/shape color */
+    transparent
+  );
+  animation: shimmerFlow 8s linear infinite;
+}
+
+@keyframes shimmerFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 .footer-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 50px;
+  gap: 4rem;
 }
 
-/* BRAND */
+/* ── BRAND COLUMN ── */
 .footer-brand h3 {
-  color: white;
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+/* Text Gradient using your exact Hero colors */
+.footer-brand h3 span {
+  background: linear-gradient(135deg, #ff4f2e, #00c9a7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-brand p {
   color: #94a3b8;
+  font-size: 0.95rem;
   line-height: 1.7;
-  font-size: 14px;
+  max-width: 360px;
+  margin-bottom: 2rem;
 }
 
-/* LINKS */
+/* "Available for Hire" Badge matched to your upper badge format */
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 79, 46, 0.06); /* Soft Orange background */
+  border: 1px solid rgba(255, 79, 46, 0.2);
+  padding: 8px 16px;
+  border-radius: 100px;
+}
+
+.footer-status span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff4f2e; /* Vibrant Orange text */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff4f2e; /* Orange pulsing dot */
+  border-radius: 50%;
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* ── LINKS & CONTACT COLUMNS ── */
 .footer-links h4,
 .footer-social h4 {
-  color: white;
-  margin-bottom: 14px;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .footer-links ul {
@@ -40,66 +112,167 @@
 }
 
 .footer-links li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-links a {
+  color: #94a3b8;
+  font-size: 0.95rem;
   text-decoration: none;
-  color: #cbd5f5;
-  font-size: 14px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
+/* Hover highlights into Teal/Green */
 .footer-links a:hover {
-  color: #38bdf8;
+  color: #00c9a7;
+  padding-left: 6px;
 }
 
-/* SOCIAL */
 .social-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .social-links a {
-  text-decoration: none;
-  color: #38bdf8;
-  font-size: 14px;
-  transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: translateX(6px);
-}
-
-/* BOTTOM */
-.footer-bottom {
-  margin-top: 50px;
-  text-align: center;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: #94a3b8;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  transition: color 0.3s ease;
 }
 
-/* SCROLL ANIMATION */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.9s ease;
+/* Contact item hover switches to Orange */
+.social-links a:hover {
+  color: #ff4f2e;
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* ── HORIZONTAL TECH STACK OVERVIEW ── */
+.footer-stack {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
-/* RESPONSIVE */
+.footer-stack span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Stack badges border interaction on hover */
+.footer-stack span:hover {
+  color: #ffffff;
+  background: rgba(0, 201, 167, 0.05);
+  border-color: rgba(0, 201, 167, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ── BOTTOM ACTIONS ROW ── */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 2rem 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-logo span {
+  color: #ff4f2e; /* Logo dot in Orange */
+}
+
+.footer-copy p {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* "Hire Me" Button matched exactly to "View Projects" styling */
+.footer-btn {
+  display: inline-block;
+  background: #ff4f2e; /* Pure vibrant orange button */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(255, 79, 46, 0.2);
+}
+
+.footer-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 79, 46, 0.45);
+  background: #e23e1d; /* Subtle dark orange down-shade */
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
 @media (max-width: 900px) {
   .footer-container {
     grid-template-columns: 1fr;
+    gap: 3rem;
     text-align: center;
+  }
+
+  .footer-brand p {
+    margin: 0 auto 1.5rem;
   }
 
   .social-links {
     align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-copy {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-stack {
+    padding: 1.5rem 0;
+    gap: 8px;
+  }
+  
+  .footer-btn {
+    width: 100%;
+    text-align: center;
   }
 }

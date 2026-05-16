@@ -618,14 +618,14 @@ export default function Hero() {
           </p>
 
           <div className="h-btns">
-            <a href="#projects" className="h-btn h-btn-primary">
+            <a href="/project" className="h-btn h-btn-primary">
               View Projects
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M1 7h12M7.5 1.5L13 7l-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
-            <a href="#contact" className="h-btn h-btn-ghost">
-              Contact Me
+            <a href="/contact" className="h-btn h-btn-ghost">
+              Hire Me
             </a>
           </div>
 

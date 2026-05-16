@@ -4,7 +4,7 @@ import { FaArrowRight, FaBriefcase, FaCode } from 'react-icons/fa';
 
 // Project images — update paths as needed
 import NovaHireImg from "../../assets/Project/nova1.png";
-import MachineryImg from '../../assets/Logo1.png';
+// import MachineryImg from '../../assets/Logo1.png';
 import Ecom1 from "../../assets/Project/ecom1.png";
 import gym from "../../assets/Project/gym4.png";
 import cgi from "../../assets/Project/cgi.png";
